@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 const { SecretClient } = require('@azure/keyvault-secrets');
 const { DefaultAzureCredential } = require('@azure/identity');
-const KEY_VAULT_URL = null || process.env['KEY_VAULT_URL'];
-const SECRET_NAME = null || process.env['SECRET_NAME'];
+const KEY_VAULT_URL = 'https://keyvaultaxa.vault.azure.net/' || process.env['KEY_VAULT_URL'];
+const SECRET_NAME = 'PassAxa' || process.env['SECRET_NAME'];
 
 
 
@@ -16,7 +16,7 @@ function getKeyVaultSecret(credentials) {
   return keyVaultClient.getSecret(SECRET_NAME);
 }
 
-app.get('/secret', function (req, res) {
+router.get('/secret', function (req, res) {
   let credentials = getKeyVaultCredentials();
   getKeyVaultSecret(credentials)
     .then(function (secret) {
