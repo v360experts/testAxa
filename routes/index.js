@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 const { SecretClient } = require('@azure/keyvault-secrets');
 const { DefaultAzureCredential } = require('@azure/identity');
-import { setLogLevel } from "@azure/logger";
+//import { setLogLevel } from "@azure/logger";
 const { KeyClient } = require("@azure/keyvault-keys");
-setLogLevel("info");
+//setLogLevel("info");
 
 // when deployed to an azure host the default azure credential will authenticate the specified user assigned managed identity
 //var credential = new DefaultAzureCredential({ managedIdentityClientId: userAssignedClientId });
