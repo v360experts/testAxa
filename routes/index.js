@@ -2,8 +2,10 @@ var express = require('express');
 var router = express.Router();
 const { SecretClient } = require('@azure/keyvault-secrets');
 const { DefaultAzureCredential } = require('@azure/identity');
+import { setLogLevel } from "@azure/logger";
 const { KeyClient } = require("@azure/keyvault-keys");
- 
+setLogLevel("info");
+
 // when deployed to an azure host the default azure credential will authenticate the specified user assigned managed identity
 //var credential = new DefaultAzureCredential({ managedIdentityClientId: userAssignedClientId });
  
@@ -47,9 +49,9 @@ router.get('/secret', function (req, res) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  let credential = getKeyVaultCredentials();
-  const client = new KeyClient(KEY_VAULT_URL, credential);
-  const getResult = await client.getKey("PassAxa");
+  /*let credential = getKeyVaultCredentials();
+  const client = new KeyClient(KEY_VAULT_URL, credential);*/
+  const getResult = "hhh";//await client.getKey("PassAxa");
   res.render('index', { title: `Express ${getResult}.` });
 
 });
