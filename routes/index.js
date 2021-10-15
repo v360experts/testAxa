@@ -8,10 +8,15 @@ const SECRET_NAME = 'PassAxa' || process.env['SECRET_NAME'];
 
 
 function getKeyVaultCredentials() {
-  return new DefaultAzureCredential();
+  return new DefaultAzureCredential({
+    managedIdentityClientId: "d7f513cb-ee4d-4ecf-a893-0ec0f81ea33f"
+  });
+  //return new DefaultAzureCredential();
 }
 
 function getKeyVaultSecret(credentials) {
+  console.log('KEY_VAULT_URL->',KEY_VAULT_URL);
+  console.log('SECRET_NAME->',SECRET_NAME);
   let keyVaultClient = new SecretClient(KEY_VAULT_URL, credentials);
   return keyVaultClient.getSecret(SECRET_NAME);
 }
